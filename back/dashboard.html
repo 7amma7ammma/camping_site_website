@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - KhimaTrip</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+  <!-- Sidebar -->
+  <div class="flex">
+    <!-- Sidebar Navigation -->
+    <nav class="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
+      <div class="py-4 px-6">
+        <a href="#" class="text-2xl font-bold">KhimaTrip</a>
+      </div>
+      <ul class="flex-grow">
+        <li class="px-6 py-3 hover:bg-gray-700">
+          <a href="stats.php" class="block" target="content-frame">Dashboard</a>
+        </li>
+        <li class="px-6 py-3 hover:bg-gray-700">
+          <a href="crud.php" class="block" target="content-frame">Manage Places</a>
+        </li>
+        <li class="px-6 py-3 hover:bg-gray-700">
+          <a href="produit_crud.php" class="block" target="content-frame">Manage Products</a>
+        </li>
+      </ul>
+    <div class="px-6 py-4">
+      <a href="../front/index.html  " class="block bg-red-500 text-white text-center py-2 rounded hover:bg-red-600">
+        Logout
+      </a>
+    </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-grow">
+        <iframe 
+        name="content-frame" 
+        src="stats.php" 
+        class="w-full h-screen border-none">
+      </iframe>
+    </div>
+  </div>
+
+</body>
+</html>

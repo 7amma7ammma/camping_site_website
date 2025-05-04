@@ -46,6 +46,40 @@
         ?>
       </div>
     </div>
+
+       <!-- Total orders -->
+       <div class="bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Total orders</h2>
+      <p class="text-gray-600 mb-4">Number of orders requested.</p>
+      <div class="text-4xl font-bold text-green-500">
+        <?php
+        $result = $conn->query("SELECT COUNT(*) AS total_orders FROM orders");
+        if ($result) {
+          $row = $result->fetch_assoc();
+          echo htmlspecialchars($row['total_orders']);
+        } else {
+          echo "0";
+        }
+        ?>
+      </div>
+    </div>
+
+    <!-- Total reservations -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Total reservations</h2>
+      <p class="text-gray-600 mb-4">Number of reservations made.</p>
+      <div class="text-4xl font-bold text-green-500">
+        <?php
+        $result = $conn->query("SELECT COUNT(*) AS total_reservations FROM reservation");
+        if ($result) {
+          $row = $result->fetch_assoc();
+          echo htmlspecialchars($row['total_reservations']);
+        } else {
+          echo "0";
+        }
+        ?>
+      </div>
+    </div>
   </div>
 </body>
 </html>

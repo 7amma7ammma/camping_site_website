@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once 'db.php';
 
 // Fetch all products from the database
@@ -20,7 +22,15 @@ $categoryResult = $conn->query("SELECT DISTINCT category FROM product") or die($
 <div class="nav">
     <a href="index.html">🏠 Home Page</a>
     <a href="about_us.html">About Us</a>
-    <a href="produit.php">🛒 Buy Products</a>
+    <a href="produit.php">🛍️ Products</a>
+<a href="cart.php">
+    🛒 Cart 
+    <?php 
+        $cart_count = isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0;
+        echo "<span style='color: yellow; font-weight: bold;'>($cart_count)</span>";
+    ?>
+</a>
+
     <a href="reservation.php">🏕️ Reserve a Camp</a>
     <div class="profile-dropdown">
         <button class="profile-btn">👤 Profile</button>
@@ -151,15 +161,18 @@ $categoryResult = $conn->query("SELECT DISTINCT category FROM product") or die($
         <strong>Status:</strong> <?= $row['stock_quantity'] > 0 ? 'In Stock' : 'Out of Stock' ?>
     </p>
 
-    <!-- Rating Placeholder -->
-    <div class="rating">
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
-        <span style="margin-left: 8px; font-size: 0.9em;">(Rating coming soon)</span>
-    </div>
+   
+    <?php if ($row['stock_quantity'] > 0): ?>
+<form action="add_to_cart.php" method="post">
+    <input type="hidden" name="product_id" value="<?= $row['id'] ?>">
+    <input type="hidden" name="product_name" value="<?= htmlspecialchars($row['name']) ?>">
+    <input type="hidden" name="product_price" value="<?= $row['price'] ?>">
+    <button type="submit" style="background: green; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+        Add to Cart 🛒
+    </button>
+</form>
+<?php endif; ?>
+
 </li>
 
                 <?php endwhile; ?>

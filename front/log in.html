@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Modern Login Form</title>
-  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'><link rel="stylesheet" href="./style.css">
-<style>
+  <title>Modern Login Form</title>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+  <link rel="stylesheet" href="./style.css">
+  <style>
     * {
   margin: 0;
   padding: 0;
@@ -218,15 +219,17 @@ a:hover {
 
 </style>
 </head>
-<div class="wrapper">
+<body>
+  <div class="wrapper">
     <div class="login_box">
       <div class="login-header">
         <span>Login</span>
       </div>
 
       <!-- ✅ FORM STARTS HERE -->
-      <form action="crud.php" method="POST">
+      <form action="crud.php" method="POST" id="loginForm">
         <input type="hidden" name="action" value="login">
+        <input type="hidden" name="redirect" id="redirectInput">
 
         <div class="input_box">
           <input type="text" id="user" name="username" class="input-field" required>
@@ -262,6 +265,7 @@ a:hover {
       </div>
     </div>
   </div>
+
   <script>
     window.addEventListener("load", () => {
       document.querySelectorAll(".input-field").forEach(input => {
@@ -269,7 +273,7 @@ a:hover {
           input.classList.add("has-value");
           input.nextElementSibling.classList.add("active");
         }
-    
+
         input.addEventListener("input", () => {
           if (input.value.trim() !== "") {
             input.classList.add("has-value");
@@ -280,6 +284,13 @@ a:hover {
           }
         });
       });
+
+      // ✅ Capture redirect value and assign it to the form
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectPage = urlParams.get('redirect');
+      if (redirectPage) {
+        document.getElementById('redirectInput').value = redirectPage;
+      }
     });
     </script>
 </body>

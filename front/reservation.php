@@ -110,6 +110,7 @@ $result = $conn->query("SELECT * FROM place") or die($conn->error);
     .profile-dropdown:hover .dropdown-content {
         display: block;
     }
+    
 </style>
 
 <header>
@@ -153,6 +154,7 @@ $result = $conn->query("SELECT * FROM place") or die($conn->error);
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                             <span style="margin-left: 8px; font-size: 0.9em;">(Rating coming soon)</span>
+                            <a href="place_detail.php?id=<?= $row['id'] ?>" class="discover-btn">Discover</a>
                         </div>
                     </li>
                 <?php endwhile; ?>
